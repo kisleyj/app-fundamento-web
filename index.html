@@ -147,6 +147,135 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Register Section -->
+        <section class="register" id="register">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Cadastre-se</h2>
+                    <p>Junte-se a nós e transfome sua forma de trabalhar</p>
+                </div>
+
+                <div class="register-card">
+                    <div class="card-header">
+                        <h3>Criar Conta</h3>
+                        <p>Preencha os dados abaixo para se cadsatrar</p>
+                    </div>
+
+                    <form id="registerForm" class="register-form">
+                        <!-- Nome -->
+                        <div class="form-group">
+                            <label for="name" class="form-label">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                Nome Completo
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Digite seu nome completo"
+                                class="form-input"
+                                autocomplete="name"
+                            >
+                            <div class="error-message" id="nameError"></div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email" class="form-label">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                E-mail
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Digite seu nome e-mail"
+                                class="form-input"
+                                autocomplete="email"
+                            >
+                            <div class="error-message" id="nameError"></div>
+                        </div>
+
+                        <!-- Telefone -->
+                        <div class="form-group">
+                            <label for="phone" class="form-label">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                                Telefone
+                            </label>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                name="phone" 
+                                placeholder="(11) 99999-9999"
+                                class="form-input"
+                                autocomplete="tel"
+                            >
+                            <div class="error-message" id="phoneError"></div>
+                        </div>
+
+                        <!-- Senha -->
+                        <div class="form-group">
+                            <label for="password" class="form-label">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <circle cx="12" cy="16" r="1"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                                Senha
+                            </label>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Digite sua senha"
+                                class="form-input"
+                                autocomplete="new-password"
+                            >
+                            <div class="error-message" id="passwordError"></div>
+                        </div>
+
+                        <!-- Confirmar Senha -->
+                        <div class="form-group">
+                            <label for="confirmPassword" class="form-label">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <circle cx="12" cy="16" r="1"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                                Confirmar Senha
+                            </label>
+                            <input 
+                                type="password" 
+                                id="confirmPassword" 
+                                name="confirmPassword" 
+                                placeholder="Confirme sua senha"
+                                class="form-input"
+                                autocomplete="new-password"
+                            >
+                            <div class="error-message" id="confirmPasswordError"></div>
+                        </div>
+
+                        <!-- Button Submit -->
+                         <button type="submit" class="btn btn-submit" id="submitBtn">
+                            Criar conta
+                         </button>
+                    </form>
+                    <div class="form-footer">
+                        <p>Ao se cadastrar, você concorda com nossos
+                            <a href="#" class="form-link">Termos de Uso</a>
+                            e <a href="#" class="form-link">Política de Privacidade</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <script src="script.js"></script>
