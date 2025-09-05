@@ -95,3 +95,56 @@ p {
         padding: 0 2rem;
     }
 }
+
+/* Estilos dos Botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    min-height: 2.5rem;
+}
+
+.btn-primary {
+    background-color: var(--blue-600);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--blue-700);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: var(--primary);
+}
+
+.btn-submit {
+    background-color: var(--blue-600);
+    color: white;
+    width: 100%;
+    padding: 1rem 1.5rem;
+}
+
+.btn-submit:hover:not(:disabled) {
+    background-color: var(--blue-700);
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
