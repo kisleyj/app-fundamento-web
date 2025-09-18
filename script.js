@@ -283,3 +283,63 @@ function validateForm() {
 
     return isFormValid
 }
+
+function handleFormSubmit() {
+    const submitBtn = document.getElementById('submitBtn')
+
+    const form = document.getElementById('registerForm')
+    const formElements = form.elements
+
+    for (let i = 0; i < formElements.length; i++) {
+        const element = formElements[i]
+        if (element.name && element.value !== undefined) {
+            formData[element.name] = element.value
+        }
+    }
+
+    if (!validateForm()) {
+        console.log("❌ Formulário contém erros. Corrija os campos destacados.")
+        return
+    }
+
+    //Mostrar loading
+    submitBtn.disabled = true
+    submitBtn.classList.add('loading')
+    submitBtn.textContent = 'Cadastrando...'
+
+    // Simular envio (2 segundos)
+    setTimeout(() => {
+        // Exibit os dados no console
+        console.log("=".repeat(50))
+        console.log("✅ CADASTRO REALIZADO COM SUCESSO!")
+        console.log("=".repeat(50))
+        console.log("DADOS DO USUÁRIO:")
+        console.log(`Nome: ${formData.name}`)
+        console.log(`E-mail: ${formData.email}`)
+        console.log(`Senha: ${formData.password}`)
+        console.log(`Telefone: ${formData.phone}`)
+        console.log("Data/Hora: ", new Date().toLocaleString("pt-BR"))
+        console.log("=".repeat(50))
+
+        // Mostrar mensagem de sucesso
+        alert("Cadastro realizado com sucesso!\n\nVerifique o console do navegado (F12) para ver os dados enviados.")
+
+        // Resetar formulário
+        resetForm()
+
+        // Remover loading
+        submitBtn.disabled = false
+        submitBtn.classList.remove('loading')
+        submitBtn.textContent = "Criar conta"
+    }, 2000)
+
+    function resetForm() {
+        const form = document.getElementById('registerForm')
+        form.reset()
+        formData = {name: '', email: '', password: '', confirmPassword: '', phone: ''}
+        for (const fieldName in formData) {
+            clearFieldError(fieldName)
+        }
+        formErrors = {}
+    }
+}
