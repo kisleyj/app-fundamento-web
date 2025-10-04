@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializa todas as funcionalidades
     initializeNavigation()
     initializeMobileMenu()
-    initializeForm()
+    initializeRegisterForm()
+    initializeLoginForm() // Nova função para o formulário de login
 })
 
 /**
@@ -91,7 +92,7 @@ let formData = {
 // Objetivo/variável para armazenar os erros
 let formErrors = {}
 
-function initializeForm() {
+function initializeRegisterForm() {
     const form = document.getElementById('registerForm')
     const inputs = form.querySelectorAll('.form-input')
 
@@ -122,7 +123,7 @@ function initializeForm() {
 
     form.addEventListener('submit', function(event) {
         event.preventDefault()
-        handleFormSubmit()
+        handleRegisterFormSubmit()
     })
 }
 
@@ -148,7 +149,7 @@ function formatPhone(value) {
 }
 
 /**
- * Validar um campo específico
+ * Validar um campo específico do formulário de registro
  * @param {string} fieldName = nome do campo
  * @param {string} value - Valor do campo
  * @returns {boolean} - Se o campo é válido
@@ -268,10 +269,10 @@ function clearFieldError(fieldName) {
 }
 
 /**
- * Validar todo o formulário
+ * Validar todo o formulário de registro
  * @returns {boolean} - Se o formulário é válido
  */
-function validateForm() {
+function validateRegisterForm() {
     let isFormValid = true;
 
     for(const fieldName in formData) {
@@ -284,7 +285,7 @@ function validateForm() {
     return isFormValid
 }
 
-function handleFormSubmit() {
+function handleRegisterFormSubmit() {
     const submitBtn = document.getElementById('submitBtn')
 
     const form = document.getElementById('registerForm')
@@ -297,8 +298,8 @@ function handleFormSubmit() {
         }
     }
 
-    if (!validateForm()) {
-        console.log("❌ Formulário contém erros. Corrija os campos destacados.")
+    if (!validateRegisterForm()) {
+        console.log("❌ Formulário de CADASTRO contém erros. Corrija os campos destacados.")
         return
     }
 
@@ -322,24 +323,86 @@ function handleFormSubmit() {
         console.log("=".repeat(50))
 
         // Mostrar mensagem de sucesso
-        alert("Cadastro realizado com sucesso!\n\nVerifique o console do navegado (F12) para ver os dados enviados.")
+        alert("Cadastro realizado com sucesso!\n\nVerifique o console do navegador (F12) para ver os dados enviados.")
 
         // Resetar formulário
-        resetForm()
+        resetRegisterForm()
 
         // Remover loading
         submitBtn.disabled = false
         submitBtn.classList.remove('loading')
         submitBtn.textContent = "Criar conta"
     }, 2000)
+}
 
-    function resetForm() {
-        const form = document.getElementById('registerForm')
-        form.reset()
-        formData = {name: '', email: '', password: '', confirmPassword: '', phone: ''}
-        for (const fieldName in formData) {
-            clearFieldError(fieldName)
-        }
-        formErrors = {}
+function resetRegisterForm() {
+    const form = document.getElementById('registerForm')
+    form.reset()
+    formData = {name: '', email: '', password: '', confirmPassword: '', phone: ''}
+    for (const fieldName in formData) {
+        clearFieldError(fieldName)
+    }
+    formErrors = {}
+}
+
+
+// --- LÓGICA DO FORMULÁRIO DE LOGIN ---
+
+function initializeLoginForm() {
+    const loginForm = document.getElementById('loginForm');
+    if (!loginForm) return;
+
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        handleLoginFormSubmit();
+    });
+}
+
+function handleLoginFormSubmit() {
+    const emailInput = document.getElementById('loginEmail');
+    const passwordInput = document.getElementById('loginPassword');
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    // Limpa erros anteriores
+    clearFieldError('loginEmail');
+    clearFieldError('loginPassword');
+
+    let isValid = true;
+
+    // Validação do E-mail
+    if (!email.trim()) {
+        showFieldError('loginEmail', 'E-mail é obrigatório');
+        isValid = false;
+    } else if (!isValidEmail(email)) {
+        showFieldError('loginEmail', 'Formato de e-mail inválido');
+        isValid = false;
+    }
+
+    // Validação da Senha
+    if (!password) {
+        showFieldError('loginPassword', 'Senha é obrigatória');
+        isValid = false;
+    } else if (password.length < 6) {
+        showFieldError('loginPassword', 'A senha deve ter no mínimo 6 caracteres');
+        isValid = false;
+    }
+
+    // Se o formulário for válido, exibe no console
+    if (isValid) {
+        console.log("=".repeat(50));
+        console.log("🔒 TENTATIVA DE LOGIN");
+        console.log("=".repeat(50));
+        console.log(`E-mail: ${email}`);
+        console.log(`Senha: ${password}`);
+        console.log("Data/Hora: ", new Date().toLocaleString("pt-BR"));
+        console.log("=".repeat(50));
+
+        alert("Login efetuado com sucesso!\n\nVerifique o console do navegador (F12) para ver os dados.");
+
+        // Reseta o formulário de login
+        document.getElementById('loginForm').reset();
+    } else {
+        console.log("❌ Formulário de LOGIN contém erros.");
     }
 }
